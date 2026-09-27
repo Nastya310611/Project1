@@ -1,5 +1,6 @@
-from .masks import get_mask_card_number, get_mask_account
 from datetime import datetime
+
+from .masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(mask: str) -> str:
@@ -22,4 +23,3 @@ def get_date(date_string: str) -> str:
     """Преобразует строку с датой из формата ISO в формат ДД.ММ.ГГГГ"""
     date_obj = datetime.fromisoformat(date_string)
     return date_obj.strftime("%d.%m.%Y")
-

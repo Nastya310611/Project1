@@ -1,4 +1,3 @@
-
 def get_mask_card_number(card_num: str) -> str:
     """Функция для маскировки номера карты"""
     if len(card_num) < 16 or len(card_num) > 16:
