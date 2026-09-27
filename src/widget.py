@@ -9,6 +9,8 @@ def mask_account_card(mask: str) -> str:
     return shifr_card
 
 
-
-shifr = mask_account_card('Visa 1234567890123456')
-print(shifr)
+def mask_account(mask: str) -> str:
+    new_mask = mask.split()
+    new_mask[1] = get_mask_account(new_mask[1])
+    shifr_card = " ".join(new_mask)
+    return shifr_card
