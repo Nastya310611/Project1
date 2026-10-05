@@ -32,3 +32,4 @@ data_to_sort = [
 ]
 
 sort_data = sort_by_date(data_to_sort)
+print(sort_data)
