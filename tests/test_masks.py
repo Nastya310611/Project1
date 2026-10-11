@@ -8,4 +8,4 @@ def test_get_mask_card_number(card_number):
 
 
 def test_get_mask_account(account_number):
-    assert get_mask_card_number(account_number) == '**3456'
+    assert get_mask_account(account_number) == '**3456'
