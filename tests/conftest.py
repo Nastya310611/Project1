@@ -10,6 +10,11 @@ def invalid_card_number():
 
 
 @pytest.fixture
+def invalid_card_number_2():
+    return '23384847739291827737736647892'
+
+
+@pytest.fixture
 def valid_account_number():
     return "1234567890123456"
 
@@ -17,5 +22,10 @@ def valid_account_number():
 @pytest.fixture
 def invalid_account_number():
     return '32334'
+
+
+@pytest.fixture
+def invalid_account_number_2():
+    return '3233485678348348489384744444'
 
 
