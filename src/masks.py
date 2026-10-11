@@ -9,6 +9,6 @@ def get_mask_card_number(card_num: str) -> str:
 def get_mask_account(account_num: str) -> str:
     """Функция для маскировки номера счёта"""
     if len(account_num) < 16 or len(account_num) > 16:
-        return "Введены некорректные данные, номер карты должен содержать 16 цифр"
+        return "Введены некорректные данные, номер счёта должен содержать 16 цифр"
     else:
         return f"**{account_num[-4:]}"
