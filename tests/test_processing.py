@@ -70,4 +70,3 @@ def test_sort_by_date_invalid_formats():
     ]
     result = sort_by_date(data)
     assert len(result) == 2
-

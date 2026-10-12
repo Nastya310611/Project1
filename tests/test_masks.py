@@ -8,11 +8,13 @@ def test_get_mask_card_number_valid(valid_number_card):
 
 
 def test_get_mask_card_number_invalid(invalid_number_1):
-    assert get_mask_card_number(invalid_number_1) == 'Введены некорректные данные, номер карты должен содержать 16 цифр'
+    assert get_mask_card_number(invalid_number_1) == ('Введены некорректные данные, '
+                                                      'номер карты должен содержать 16 цифр')
 
 
 def test_get_mask_card_number_invalid_2(invalid_number_2):
-    assert get_mask_card_number(invalid_number_2) == 'Введены некорректные данные, номер карты должен содержать 16 цифр'
+    assert get_mask_card_number(invalid_number_2) == ('Введены некорректные данные, '
+                                                      'номер карты должен содержать 16 цифр')
 
 
 def test_get_mask_card_number_invalid_3(invalid_number_3):
