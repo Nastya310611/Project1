@@ -47,3 +47,14 @@ def sample_transaction():
         {'id': 4, 'state': 'PENDING', 'date': '2024-01-04T13:00:00'},
         {'id': 5, 'state': 'CANCELED', 'date': '2024-01-05T14:00:00'},
     ]
+
+
+# Фикстура с данными для тестирования функции sort_by_date в processing.py
+@pytest.fixture
+def sample_dates():
+    return [
+        {'id': 1, 'date': '2024-01-03T12:00:00'},
+        {'id': 2, 'date': '2024-01-01T10:00:00'},
+        {'id': 3, 'date': '2024-01-02T11:00:00'},
+        {'id': 4, 'date': '2024-01-03T12:00:00'},  # Одинаковая дата с id=1
+    ]
