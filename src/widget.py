@@ -18,7 +18,7 @@ def mask_account_card(mask: str) -> str:
 
 def mask_account(mask: str) -> str:
     """Маскирует номер счёта"""
-    if not 'Счет' in mask:
+    if 'Счет' not in mask:
         return 'Вы ввели номер карты, а не номер счета'
     else:
         new_mask = mask.split()
