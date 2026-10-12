@@ -5,12 +5,12 @@ from .masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(mask: str) -> str:
     """Маскирует номер карты"""
-    if 'Счет' in mask:
-        return 'Вы ввели номер счёта, а не номер карты'
+    if "Счет" in mask:
+        return "Вы ввели номер счёта, а не номер карты"
     else:
         new_mask = mask.split()
-        new_mask[- 1] = get_mask_card_number(new_mask[- 1])
-        if new_mask[-1].startswith('Введены') or new_mask[-1].startswith('Номер карты'):
+        new_mask[-1] = get_mask_card_number(new_mask[-1])
+        if new_mask[-1].startswith("Введены") or new_mask[-1].startswith("Номер карты"):
             return new_mask[-1]
         shifr_card = " ".join(new_mask)
         return shifr_card
@@ -18,12 +18,12 @@ def mask_account_card(mask: str) -> str:
 
 def mask_account(mask: str) -> str:
     """Маскирует номер счёта"""
-    if 'Счет' not in mask:
-        return 'Вы ввели номер карты, а не номер счета'
+    if "Счет" not in mask:
+        return "Вы ввели номер карты, а не номер счета"
     else:
         new_mask = mask.split()
         new_mask[-1] = get_mask_account(new_mask[-1])
-        if new_mask[-1].startswith('Введены') or new_mask[-1].startswith('Номер счета'):
+        if new_mask[-1].startswith("Введены") or new_mask[-1].startswith("Номер счета"):
             return new_mask[-1]
         shifr_account = " ".join(new_mask)
         return shifr_account
