@@ -17,7 +17,7 @@ def get_mask_account(account_num: str) -> str:
         return 'Вы не ввели номер счёта'
     if account_num.isdigit():
         if len(account_num) < 20 or len(account_num) > 20:
-            return "Введены некорректные данные, номер счёта должен содержать 16 цифр"
+            return "Введены некорректные данные, номер счёта должен содержать 20 цифр"
         else:
             return f"**{account_num[-4:]}"
     else:
