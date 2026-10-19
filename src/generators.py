@@ -10,7 +10,7 @@ def filter_by_currency(transactions: list, currency: str) -> Iterator:
 
 
 def transaction_descriptions(transactions: list) -> Iterator:
-    """Генератор ринимает список словарей с транзакциями и возвращает
+    """Генератор принимает список словарей с транзакциями и возвращает
     описание каждой операции по очереди"""
     for transaction in transactions:
         yield transaction.get("description", "Описание отсутствует")
