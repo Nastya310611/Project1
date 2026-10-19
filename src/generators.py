@@ -1,6 +1,3 @@
-from src.masks import get_mask_card_number
-
-
 def filter_by_currency(transactions: list, currency: str) -> iter:
     """Функция возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
