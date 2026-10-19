@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 
 
 @pytest.mark.parametrize(
@@ -62,5 +62,22 @@ def test_filter_by_currency_empty_list():
     """Проверка функции при отсутствии списка транзакций"""
     empty_transactions = []
     result = filter_by_currency(empty_transactions, 'RUB')
+    with pytest.raises(StopIteration):
+        next(result)
+
+
+def test_transaction_descriptions(transactions):
+    """Проверка функции при наличии description"""
+    desc_generator = transaction_descriptions(transactions)
+    first_desc = next(desc_generator)
+    assert first_desc == 'Перевод организации'
+    second_desc = next(desc_generator)
+    assert second_desc == 'Перевод со счета на счет'
+
+
+def test_transaction_descriptions_empty_list():
+    """Проверка функции при отсутствии списка транзакций"""
+    empty_transactions = []
+    result = transaction_descriptions(empty_transactions)
     with pytest.raises(StopIteration):
         next(result)
