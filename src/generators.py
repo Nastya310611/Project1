@@ -12,7 +12,8 @@ def filter_by_currency(transactions: list, currency: str) -> Iterator:
 def transaction_descriptions(transactions: list) -> Iterator:
     """Генератор ринимает список словарей с транзакциями и возвращает
     описание каждой операции по очереди"""
-    return (transaction.get("description", "Описание отсутствует") for transaction in transactions)
+    for transaction in transactions:
+        yield transaction.get("description", "Описание отсутствует")
 
 
 def card_number_generator(start: int, stop: int) -> Iterator:
