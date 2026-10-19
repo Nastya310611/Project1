@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 @pytest.mark.parametrize(
@@ -81,3 +81,25 @@ def test_transaction_descriptions_empty_list():
     result = transaction_descriptions(empty_transactions)
     with pytest.raises(StopIteration):
         next(result)
+
+
+@pytest.mark.parametrize(
+    'start, stop, expected',
+    [
+        (1, 5, ['0000 0000 0000 0001', # Корректный ввод диапазона
+                '0000 0000 0000 0002',
+                '0000 0000 0000 0003',
+                '0000 0000 0000 0004',
+                '0000 0000 0000 0005',]),
+
+        (23, 23, ['0000 0000 0000 0023',]), # Ввод одинаковых чисел
+        (6, 3, []), # Начало списка больше конца
+
+        (20876, 20879, ['0000 0000 0002 0876', # Диапазон из чисел, больше 4 символов
+                        '0000 0000 0002 0877',
+                        '0000 0000 0002 0878',
+                        '0000 0000 0002 0879']),
+    ]
+)
+def test_card_number_generator(start, stop, expected):
+    assert list(card_number_generator(start, stop)) == expected
