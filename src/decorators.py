@@ -7,9 +7,12 @@ T = TypeVar("T")
 
 
 def log(filename: str | None = None) -> Callable[[Callable[P, T]], Callable[P, T]]:
+    """Декоратор, который логирует выполнение функции"""
     def decorator(func: Callable[P, T]) -> Callable[P, T]:
+        """Внутренний декоратор, который принимает функцию для логирования"""
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+            """Обертка, которая перехватывает вызов, логирует его"""
             message = ""
             call_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             try:
