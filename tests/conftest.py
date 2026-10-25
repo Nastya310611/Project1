@@ -1,4 +1,5 @@
 import os
+
 import pytest
 
 
@@ -115,7 +116,7 @@ def transactions() -> list:
 
 @pytest.fixture
 def cleanup_file():
-    filename = 'test_log.txt'
+    filename = "test_log.txt"
     yield filename
     if os.path.exists(filename):
         os.remove(filename)
