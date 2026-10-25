@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 
@@ -110,3 +112,11 @@ def transactions() -> list:
             "to": "Счет 14211924144426031657",
         },
     ]
+
+
+@pytest.fixture
+def cleanup_file():
+    filename = "test_log.txt"
+    yield filename
+    if os.path.exists(filename):
+        os.remove(filename)
