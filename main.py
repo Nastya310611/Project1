@@ -3,6 +3,7 @@ from src.widget import get_date, mask_account, mask_account_card
 from src.processing import filter_by_state, sort_by_date
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
+
 card_number = get_mask_card_number('1234567890123456')
 print(card_number)
 
