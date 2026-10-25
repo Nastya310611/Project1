@@ -1,11 +1,12 @@
 from datetime import datetime
 from functools import wraps
-from typing import Callable, ParamSpec, TypeVar, Any
+from typing import Callable, ParamSpec, TypeVar
 
-P = ParamSpec('P')
-T = TypeVar('T')
+P = ParamSpec("P")
+T = TypeVar("T")
 
-def log(filename: str | None =None) -> Callable[[Callable[P, T]], Callable[P, T]]:
+
+def log(filename: str | None = None) -> Callable[[Callable[P, T]], Callable[P, T]]:
     def decorator(func: Callable[P, T]) -> Callable[P, T]:
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
