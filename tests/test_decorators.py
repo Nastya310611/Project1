@@ -48,6 +48,7 @@ def test_log_error_console(capsys):
 
 
 def test_log_error_file(cleanup_file):
+    """Обработка исключений (запись в файл)"""
     filename = cleanup_file
 
     @log(filename=filename)
