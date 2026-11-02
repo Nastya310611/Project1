@@ -1,8 +1,9 @@
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from src.external_api import convert_to_rub
 
 
-def test_convert_to_rub_rub():
+def test_convert_to_rub_rub() -> None:
     """Конвертация рублей (API не должен вызываться)"""
     transaction = {"amount": 1000, "currency": "RUB"}
     result = convert_to_rub(transaction)
@@ -10,8 +11,8 @@ def test_convert_to_rub_rub():
 
 
 # Успешная конвертация USD (мокаем requests.get)
-@patch('src.external_api.requests.get')
-def test_convert_to_rub_usd_success(mock_get):
+@patch("src.external_api.requests.get")
+def test_convert_to_rub_usd_success(mock_get) -> None:
     """Фейковый ответ от API"""
     mock_response = MagicMock()
     mock_response.status_code = 200
@@ -22,11 +23,11 @@ def test_convert_to_rub_usd_success(mock_get):
     result = convert_to_rub(transaction)
 
     assert result == 9000.0
-    mock_get.assert_called_once()  # Проверяем, что запрос к API вообще был
+    mock_get.assert_called_once()
 
 
-@patch('src.external_api.requests.get')
-def test_convert_to_rub_eur_success(mock_get):
+@patch("src.external_api.requests.get")
+def test_convert_to_rub_eur_success(mock_get) -> None:
     """Успешная конвертация EUR (мокаем requests.get)"""
     mock_response = MagicMock()
     mock_response.status_code = 200
@@ -39,7 +40,7 @@ def test_convert_to_rub_eur_success(mock_get):
     assert result == 10000.0
 
 
-def test_convert_to_rub_unknown_currency():
+def test_convert_to_rub_unknown_currency() -> None:
     """Валюта неизвестна (например, GBP)"""
     transaction = {"amount": 100, "currency": "GBP"}
     result = convert_to_rub(transaction)
