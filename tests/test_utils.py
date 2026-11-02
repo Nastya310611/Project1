@@ -1,4 +1,3 @@
-import json
 from unittest.mock import mock_open, patch
 from src.utils import load_operations  # Убедитесь, что путь импорта верный!
 
