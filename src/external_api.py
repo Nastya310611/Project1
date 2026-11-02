@@ -4,7 +4,7 @@ import requests
 from dotenv import load_dotenv
 
 
-load_dotenv()
+load_dotenv('.env')
 
 def convert_to_rub(transaction: dict) -> float:
     """Функция конвертации валюты из USD и EUR в рубли"""
