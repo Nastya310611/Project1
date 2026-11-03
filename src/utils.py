@@ -8,7 +8,7 @@ LOG_FILE_PATH = os.path.join(BASE_DIR, 'logs', 'utils.log')
 logger = logging.getLogger('utils')
 logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler(LOG_FILE_PATH, encoding='utf-8')
-file_formatter = logging.Formatter('%(asktime)s - %(name)s - %(levelname)s: %(message)s')
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
