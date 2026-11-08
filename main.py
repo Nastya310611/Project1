@@ -2,6 +2,7 @@ from src.masks import get_mask_account, get_mask_card_number
 from src.widget import get_date, mask_account, mask_account_card
 from src.processing import filter_by_state, sort_by_date
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.reading_files import read_transactions_csv, read_transactions_excel
 
 
 card_number = get_mask_card_number('1234567890123456')
@@ -68,3 +69,15 @@ for _ in range(2):
 
 for card_number in card_number_generator(1, 5):
     print(card_number)
+
+
+if __name__ == '__main__':
+    csv_path = 'data/transactions.csv'
+    excel_path = 'data/transactions_excel.xlsx'
+
+    csv_data = read_transactions_csv(csv_path)
+    print(f'Прочитано из CSV: {len(csv_data)} записей')
+
+    excel_data = read_transactions_excel(excel_path)
+    print(f'Прочитано из Excel: {len(excel_data)} записей')
+
