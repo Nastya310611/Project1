@@ -1,10 +1,9 @@
-import pytest
-from unittest.mock import mock_open, patch, MagicMock
+from unittest.mock import mock_open, patch
 import pandas as pd
 from src.reading_files import read_transactions_csv, read_transactions_excel
 
 
-#Тест для чтенис CSV
+# Тест для чтенис CSV
 def test_read_transactions_csv_empty():
     """Тестируем корректное чтение файлов"""
     m = mock_open(read_data='')
@@ -13,7 +12,7 @@ def test_read_transactions_csv_empty():
         assert result == []
 
 
-#Тест для чтенис Excel
+# Тест для чтенис Excel
 def test_read_transactions_excel_empty():
     """Тестируем корректное чтение файлов"""
     empty_df = pd.DataFrame()
