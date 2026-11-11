@@ -3,7 +3,8 @@ def filter_by_state(dict_state: list, state: str = "EXECUTED") -> list:
     у которых ключ state соответствует указанному значению"""
     new_dict_stage = []
     for item in dict_state:
-        if item["state"] == state:
+        item_state = item.get('state')
+        if item_state is not None and str(item_state).lower() == state.lower():
             new_dict_stage.append(item)
     return new_dict_stage
 
