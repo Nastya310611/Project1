@@ -6,7 +6,7 @@ import pandas as pd
 def read_transactions_csv(file_path: str) -> list[dict]:
     """Считывает финансовые операции из CSV и возвращает список словарей"""
     with open(file_path, encoding="utf-8") as rd_file:
-        reader = csv.DictReader(rd_file)
+        reader = csv.DictReader(rd_file, delimiter=';')
         return [row for row in reader]
 
 
