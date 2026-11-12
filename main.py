@@ -1,13 +1,9 @@
 from time import sleep
-
-from mypy.dmypy_util import receive
-
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
-from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.reading_files import read_transactions_csv, read_transactions_excel
-from src.widget import get_date, mask_account, mask_account_card
 from src.utils import load_operations
+from src.widget import get_date, mask_account, mask_account_card
+
 #
 # card_number = get_mask_card_number("1234567890123456")
 # print(card_number)
@@ -92,152 +88,148 @@ from src.utils import load_operations
 
 
 def main():
-    print('Привет! Добро пожаловать в программу работы с банковскими транзакциями. ')
+    print("Привет! Добро пожаловать в программу работы с банковскими транзакциями. ")
     sleep(2)
-    print('Выберите необходимый пункт меню:')
-    print('1. Получить информацию о транзакциях из JSON-файла')
-    print('2. Получить информацию о транзакциях из CSV-файла')
-    print('3. Получить информацию о транзакциях из XLSX-файла')
-    print('')
-    info_transactions = input('Действие: ')
+    print("Выберите необходимый пункт меню:")
+    print("1. Получить информацию о транзакциях из JSON-файла")
+    print("2. Получить информацию о транзакциях из CSV-файла")
+    print("3. Получить информацию о транзакциях из XLSX-файла")
+    print("")
+    info_transactions = input("Действие: ")
 
-    while info_transactions.lower() != '1' and info_transactions.lower() != '2' and info_transactions.lower() != '3':
+    while info_transactions.lower() != "1" and info_transactions.lower() != "2" and info_transactions.lower() != "3":
         print(f'Действие "{info_transactions}" недоступно.')
         info_transactions = input(
-            'Введите действие из списка: '
-            '\n1. Получить информацию о транзакциях из JSON-файла'
-            '\n2. Получить информацию о транзакциях из CSV-файла'
-            '\n3. Получить информацию о транзакциях из XLSX-файла'
+            "Введите действие из списка: "
+            "\n1. Получить информацию о транзакциях из JSON-файла"
+            "\n2. Получить информацию о транзакциях из CSV-файла"
+            "\n3. Получить информацию о транзакциях из XLSX-файла"
         )
 
-    if info_transactions == '1':
-        print('Для обработки выбран JSON-файл.')
+    if info_transactions == "1":
+        print("Для обработки выбран JSON-файл.")
 
-    elif info_transactions == '2':
-        print('Для обработки выбран CSV-файл.')
+    elif info_transactions == "2":
+        print("Для обработки выбран CSV-файл.")
 
-    elif info_transactions == '3':
-        print('Для обработки выбран XLSX-файл.')
-
+    elif info_transactions == "3":
+        print("Для обработки выбран XLSX-файл.")
 
     sleep(2)
-    print('Введите статус, по которому необходимо выполнить фильтрацию.\nДоступные для фильтровки статусы: EXECUTED, CANCELED, PENDING')
-    state = input('Статус: ')
+    print(
+        "Введите статус, по которому необходимо выполнить фильтрацию."
+        "\nДоступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
+    )
+    state = input("Статус: ")
 
-    while state.lower() != 'executed' and state.lower() != 'canceled' and state.lower() != 'pending':
+    while state.lower() != "executed" and state.lower() != "canceled" and state.lower() != "pending":
         print(f'Статус операции "{state}" недоступен.')
-        state = input('Введите статус, по которому необходимо выполнить фильтрацию.\nДоступные для фильтровки статусы: EXECUTED, CANCELED, PENDING')
+        state = input(
+            "Введите статус, по которому необходимо выполнить фильтрацию."
+            "\nДоступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
+        )
 
-    if state.lower() == 'executed':
-        print(f'Операции отфильтрованы по статусу "EXECUTED"')
+    if state.lower() == "executed":
+        print('Операции отфильтрованы по статусу "EXECUTED"')
 
-    elif state.lower() == 'canceled':
-        print(f'Операции отфильтрованы по статусу "CANCELED"')
+    elif state.lower() == "canceled":
+        print('Операции отфильтрованы по статусу "CANCELED"')
 
-    elif state.lower() == 'pending':
-        print(f'Операции отфильтрованы по статусу "PENDING"')
+    elif state.lower() == "pending":
+        print('Операции отфильтрованы по статусу "PENDING"')
 
-
-    sort_data = input('Отсортировать операции по дате? Да/Нет ')
-    print('Отсортировать по возрастанию или по убыванию?')
-    sort_order = input('по возрастанию/по убыванию ')
-    filter_rub = input(' Выводить только рублевые транзакции? Да/Нет ')
-    keyword_filter = input('Отфильтровать список транзакций по определенному слову в описании? Да/Нет ')
-    keyword = ''
-    if keyword_filter == 'да':
-        keyword = input('Введите слово для фильтрации: ')
-        print(f'Слово для фильтрации: {keyword}')
-
+    sort_data = input("Отсортировать операции по дате? Да/Нет ")
+    print("Отсортировать по возрастанию или по убыванию?")
+    sort_order = input("по возрастанию/по убыванию ")
+    filter_rub = input(" Выводить только рублевые транзакции? Да/Нет ")
+    keyword_filter = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет ")
+    keyword = ""
+    if keyword_filter == "да":
+        keyword = input("Введите слово для фильтрации: ")
+        print(f"Слово для фильтрации: {keyword}")
 
     sleep(2)
-    print('Программа: Распечатываю итоговый список транзакций...')
+    print("Программа: Распечатываю итоговый список транзакций...")
     sleep(4)
 
     transactions = []
-    if info_transactions == '1':
-        transactions = load_operations('data/operations.json')
+    if info_transactions == "1":
+        transactions = load_operations("data/operations.json")
 
-    elif info_transactions == '2':
-        transactions = read_transactions_csv('data/transactions.csv')
+    elif info_transactions == "2":
+        transactions = read_transactions_csv("data/transactions.csv")
 
+    elif info_transactions == "3":
+        transactions = read_transactions_excel("data/transactions_excel.xlsx")
 
-    elif info_transactions == '3':
-        transactions = read_transactions_excel('data/transactions_excel.xlsx')
-
-# Фильтр по статусу
+    # Фильтр по статусу
     filtered_transactions = filter_by_state(transactions, state)
 
-# Фильтр по валюте
-    if filter_rub.lower() == 'да':
+    # Фильтр по валюте
+    if filter_rub.lower() == "да":
         filtered_transactions = [
-            trans for trans in filtered_transactions
-            if 'rub' in str(trans.get('operationAmount', {}).get('currency', {}).get('code', '')).lower()
-            or 'руб' in str(trans.get('operationAmount', {}).get('currency', {}).get('name', '')).lower()
-            or 'rub' in str(trans.get('currency_code', '')).lower()
-            or 'руб' in str(trans.get('currency_name', '')).lower()
+            trans
+            for trans in filtered_transactions
+            if "rub" in str(trans.get("operationAmount", {}).get("currency", {}).get("code", "")).lower()
+            or "руб" in str(trans.get("operationAmount", {}).get("currency", {}).get("name", "")).lower()
+            or "rub" in str(trans.get("currency_code", "")).lower()
+            or "руб" in str(trans.get("currency_name", "")).lower()
         ]
 
-
-# Фильтр по ключевому слову
+    # Фильтр по ключевому слову
     if keyword:
         keyword_transactions = []
         for trans in filtered_transactions:
-            description = str(trans.get('description', '')).lower()
+            description = str(trans.get("description", "")).lower()
             if keyword.lower() in description:
                 keyword_transactions.append(trans)
         filtered_transactions = keyword_transactions
 
-# Фильтр по дате
-    if sort_data == 'да':
-        reverse_flag = (sort_order == 'по убыванию')
+    # Фильтр по дате
+    if sort_data == "да":
+        reverse_flag = sort_order == "по убыванию"
         filtered_transactions = sort_by_date(filtered_transactions, reverse=reverse_flag)
 
     if not filtered_transactions:
-        print('Не найдено ни одной транзакции по вашему запросу')
+        print("Не найдено ни одной транзакции по вашему запросу")
     else:
-        print(f'Всего банковских операций в выборке: {len(filtered_transactions)}')
+        print(f"Всего банковских операций в выборке: {len(filtered_transactions)}")
 
-# Вывод операций
+    # Вывод операций
     for trans in filtered_transactions:
-        raw_date = trans.get('date', '')
+        raw_date = trans.get("date", "")
         date_str = get_date(raw_date)
 
-        description = trans.get('description')
-        print(f'{date_str} {description}')
+        description = trans.get("description")
+        print(f"{date_str} {description}")
 
-        sender = str(trans.get('from', ''))
-        receiver = str(trans.get('to', ''))
+        sender = str(trans.get("from", ""))
+        receiver = str(trans.get("to", ""))
         if sender:
-            if 'счет' in sender.lower():
+            if "счет" in sender.lower():
                 sender = mask_account(sender)
             else:
                 sender = mask_account_card(sender)
 
         if receiver:
-            if 'счет' in receiver.lower():
+            if "счет" in receiver.lower():
                 receiver = mask_account(receiver)
             else:
                 receiver = mask_account_card(receiver)
 
         if sender and receiver:
-            print(f'{sender} -> {receiver}')
+            print(f"{sender} -> {receiver}")
         elif receiver:
-            print(f'{receiver}')
+            print(f"{receiver}")
 
-        if 'operationAmount' in trans:
-            amount = trans['operationAmount'].get('amount', '')
-            currency = trans['operationAmount'].get('currency', {}).get('name', '')
+        if "operationAmount" in trans:
+            amount = trans["operationAmount"].get("amount", "")
+            currency = trans["operationAmount"].get("currency", {}).get("name", "")
         else:
-            amount = trans.get('amount', '')
-            currency = trans.get('currency_name', trans.get('currency', ''))
+            amount = trans.get("amount", "")
+            currency = trans.get("currency_name", trans.get("currency", ""))
 
         print(f"Сумма: {amount} {currency}\n")
 
 
-
-
-
 main()
-
-
-
