@@ -1,6 +1,6 @@
 import pytest
 
-from src.processing import filter_by_state, sort_by_date, process_bank_search
+from src.processing import filter_by_state, sort_by_date, process_bank_search, process_bank_operations
 
 
 @pytest.mark.parametrize(
@@ -190,3 +190,32 @@ def test_process_bank_search_empty_str(transactions: list[dict]) -> None:
     assert result == expected
 
 
+# Тест функции по выводу количества операций по заданной категории: все данные есть
+def test_process_bank_operations(transactions: list[dict]) -> None:
+    categories_to_count = [
+        'Перевод организации',
+        'Перевод с карты на карту',
+        'перевод со счета на счет'
+    ]
+    expected = {
+        'Перевод организации': 2,
+        'Перевод с карты на карту': 1,
+        'перевод со счета на счет': 2,
+    }
+    result = process_bank_operations(transactions, categories_to_count)
+    assert result == expected
+
+
+# Тест функции по выводу количества операций по заданной категории: категория отсутствует,
+# категория - пустой список
+def test_process_bank_operations_missing(transactions: list[dict]) -> None:
+    categories_to_count = [
+        'Покупка в супермаркете',
+        ''
+    ]
+    expected = {
+        'Покупка в супермаркете': 0,
+        '': 0,
+    }
+    result = process_bank_operations(transactions, categories_to_count)
+    assert result == expected
