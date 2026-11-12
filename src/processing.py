@@ -1,4 +1,7 @@
 import re
+from collections import Counter
+
+from unicodedata import category
 
 
 def filter_by_state(dict_state: list, state: str = "EXECUTED") -> list:
@@ -23,6 +26,17 @@ def process_bank_search(data:list[dict], search:str)->list[dict]:
             data_with_search.append(operation)
     return data_with_search
 
+
+def process_bank_operations(data:list[dict], categories:list)->dict:
+    """Функция принимает список словарей с данными о банковских операциях и список категорий операций,
+    а возвращает словарь, в котором ключи — это названия категорий, а значения — это количество операций
+    в каждой категории."""
+    counts = Counter(
+        operation.get('description').lower()
+        for operation in data if 'description' in operation
+    )
+    result = {category: counts[category.lower()] for category in categories}
+    return result
 
 def sort_by_date(data: list, reverse: bool = True) -> list:
     """Функция сортирует список по дате"""
